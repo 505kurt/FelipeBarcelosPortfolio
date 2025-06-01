@@ -2,4 +2,8 @@
     .image-about {
         display: none;
     }
+
+    hr {
+        display: none;
+    }
 }

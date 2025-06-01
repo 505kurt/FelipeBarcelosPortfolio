@@ -1,5 +1,15 @@
+.fodase {
+  height: 100vh;
+  width: 50vw;
+  background-color: aquamarine;
+}
+
 /*dark mode active (default)*/
 .header {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
     display: flex;
     width: clamp(320px, 75vw, 1440px);
     height: clamp(60px, 10vh, 108px);
@@ -8,7 +18,6 @@
     background-color: #0f1117;
     border: 3px solid #2B2F38;
     border-radius: 12px;
-    margin-top: clamp(16px, 3vh, 36px);
 }
 
 .name {
@@ -70,6 +79,7 @@
     border: 2px solid #2B2F38;
     border-radius: 90px;
     transition: background-color 0.5s ease;
+    cursor: pointer;
 }
 .dark-mode-toggler img {
     width: clamp(22px, 1.69vw, 80px);
@@ -104,6 +114,48 @@
   margin-left: auto;
 }
 
+.getintouch-button {
+  padding: 0.75em 1.5em;
+  font-family: 'MontserratMedium', sans-serif;
+  font-size: clamp(1rem, 1.25vw, 1.5rem);
+  background-color: transparent;
+  color: #00C776;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  transition: color 0.3s ease;
+  margin-bottom: 2vh;
+  transition: scale 0.5s ease;
+}
+
+.getintouch-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(90deg, #00C776, #00ffa2, #00C776);
+  background-size: 200% auto;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+  transition: background-position 0.5s ease, filter 0.3s ease;
+}
+
+.getintouch-button:hover::before {
+  background-position: 200% center;
+  filter: drop-shadow(0 0 6px #00C776) drop-shadow(0 0 12px #00C776);
+}
+
+.getintouch-button:hover {
+  color: #00ffa2;
+  animation: text-glow 4s ease-in-out infinite;
+  scale: 1.01;
+}
+
 /*dark mode inactive*/
 .dark-mode-inactive .header {
   background-color: #f9fafa;
@@ -124,4 +176,13 @@
     background-color: 	#e0e0e0;
     border: 2px solid #d1d5db;
     transition: background-color 0.5s ease;
+}
+
+.dark-mode-inactive .getintouch-button {
+  transition: background-color 0.8s ease;
+}
+
+.dark-mode-inactive .getintouch-button:hover {
+  background-color: #00C776;
+  color: #f9fafa;
 }

@@ -5,7 +5,6 @@ body {
   width: 100vw;
   overflow-x: hidden;
   margin: 0;
-  padding: 0;
   background-color: #0f1117;
   font-size: 16px;
   color: #e5e9f0;
@@ -13,17 +12,25 @@ body {
   scroll-behavior: smooth;
 }
 
+.dark-mode-inactive {
+  background-color: #f9fafa;
+  color: #1a1d24;
+  transition: background-color 0.8s ease;
+}
+
+header {
+  padding-top: clamp(16px, 3vh, 36px);
+}
+
+main {
+  margin-top: clamp(76px, 13vh, 144px);
+}
+
 @font-face {
   font-family: 'MontserratMedium';
   src: url('fonts/Montserrat-Medium.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-}
-
-.dark-mode-inactive {
-  background-color: #f9fafa;
-  color: #1a1d24;
-  transition: background-color 0.8s ease;
 }
 
 .title-big {
@@ -46,4 +53,13 @@ p {
 
 .p-highlight {
   color: #00A263;
+}
+
+hr {
+  margin: 0;
+  border: 1px solid #2B2F38;
+}
+
+.dark-mode-inactive hr {
+  border: 1px solid #D1D5DB;
 }
