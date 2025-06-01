@@ -1,0 +1,49 @@
+@import url(components.css);
+@import url(responsive.css);
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #0f1117;
+  font-size: 16px;
+  color: #e5e9f0;
+  transition: background-color 0.5s ease;
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: 'MontserratMedium';
+  src: url('fonts/Montserrat-Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.dark-mode-inactive {
+  background-color: #f9fafa;
+  color: #1a1d24;
+  transition: background-color 0.8s ease;
+}
+
+.title-big {
+  font-family: 'MontserratMedium', sans-serif;
+  font-size: clamp(64px, 9vw, 128px);
+  color: #00C776;
+}
+
+.title-medium {
+  font-family: 'MontserratMedium', sans-serif;
+  font-size: clamp(42px, 5.91vw, 84px);
+  color: #00C776;
+}
+
+p {
+  font-family: 'MontserratMedium', sans-serif;
+  font-size: clamp(10px, 1.41vw, 20px);
+  
+}
+
+.p-highlight {
+  color: #00A263;
+}
