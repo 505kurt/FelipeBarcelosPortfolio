@@ -1,4 +1,5 @@
 @import url("compontents.css");
+@import url("responsive.css");
 
 @font-face {
   font-family: 'Aventa';
@@ -35,8 +36,4 @@ p {
 a {
     color: inherit;
     text-decoration: none;
-}
-
-a:visited {
-    color: inherit;
 }

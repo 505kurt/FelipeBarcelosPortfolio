@@ -8,7 +8,7 @@
     overflow-x: hidden;
     color: #00C776;
     font-family: 'Aventa';
-    font-size: clamp(48px, 5vw, 64px);;
+    font-size: clamp(48px, 5vw, 64px);
     background-color: #0F1117;
     -webkit-animation: blur-out-contract-bck 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     -webkit-animation-delay: 1s;
@@ -21,12 +21,16 @@
 }
 
 #splash-text img {
-    width: clamp(87px, 9.06vw, 116px);;
+    width: clamp(87px, 9.06vw, 116px);
     height: auto;
 }
 
 .splash-name {
     font-family: 'Montserrat';
+}
+
+.hidden-content {
+  display: none !important;
 }
 /*menu*/
 .menu {
@@ -64,6 +68,7 @@
     flex-direction: column;
     height: 40vh;
     margin: 0;
+    margin-right: 0 !important;
     gap: 1vh;
 }
 
@@ -153,6 +158,10 @@
 }
 
 /*projects*/
+.projects-title {
+  display: none;
+}
+
 .projects-body {
   display: flex;
   flex-direction: column;
@@ -223,8 +232,6 @@
 
 /*links*/
 .links-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   align-self: center;
 }
 

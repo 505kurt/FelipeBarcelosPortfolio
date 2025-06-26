@@ -1,22 +1,57 @@
 document.addEventListener("DOMContentLoaded", () => {
   const splash = document.getElementById("splash-text");
+  const mainContent = document.getElementById("main");
   const typing = document.querySelector(".typing-text");
 
   const navigationType = performance.getEntriesByType("navigation")[0]?.type;
   const isReload = navigationType === "reload";
   const isInitialLoad = !sessionStorage.getItem("visited");
 
+  mainContent.classList.add("hidden-content");
+
   if (isReload || isInitialLoad) {
     sessionStorage.setItem("visited", "true");
-    setTimeout(() => {
+
+    splash.addEventListener("animationend", () => {
       splash.classList.add("hidden");
       typing.classList.add("visited");
-    }, 3500);
+      mainContent.classList.remove("hidden-content");
+    }, { once: true });
+
   } else {
     splash.classList.add("hidden");
     typing.classList.add("visited");
+    mainContent.classList.remove("hidden-content");
+  }
+
+  const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+
+  if (isPortrait) {
+    loadProjects();
+    disableNavigation();
+    showAllSections();
+  } else {
+    activatePage('index-body');
   }
 });
+
+
+
+function disableNavigation() {
+
+  document.querySelectorAll('.menu-options').forEach(link => {
+    link.onclick = null;
+    link.style.display = 'none';
+    link.style.pointerEvents = 'none';
+    link.style.opacity = '0.5';
+    link.style.cursor = 'default';
+  });
+}
+
+function showAllSections() {
+  document.querySelectorAll('.index-body, .projects-body, .contact-body, .links-body')
+    .forEach(section => section.style.display = 'flex');
+}
 
 function loadProjects() {
   const container = document.querySelector('.projects-body');
@@ -27,7 +62,6 @@ function loadProjects() {
       return response.json();
     })
     .then(projects => {
-
       container.innerHTML = '';
 
       projects.slice(0, 5).forEach(p => {
@@ -37,6 +71,8 @@ function loadProjects() {
         const title = document.createElement('a');
         title.className = 'project-title';
         title.textContent = p.name;
+        title.setAttribute("href", p.link);
+        title.setAttribute("target", "_blank");
 
         const info = document.createElement('span');
         info.className = 'project-info';
@@ -83,6 +119,8 @@ function deactivateActive() {
 }
 
 function activatePage(newClass) {
+  if (window.matchMedia("(orientation: portrait)").matches) return; // bloqueia se vertical
+
   deactivateActive();
 
   const page = document.querySelector('.' + newClass);
@@ -117,7 +155,3 @@ function activatePage(newClass) {
     icon.src = 'images/circle.png';
   }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  activatePage('index-body');
-});
