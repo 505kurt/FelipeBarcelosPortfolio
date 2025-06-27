@@ -1,13 +1,13 @@
 [
   {
     "name": "TechWeek-Digest",
-    "description": "Sem descrição",
+    "description": "Newsletter semanal de tecnologia com scraping automatizado, resumos com IA e site responsivo.",
     "created": "Jun 2025",
     "link": "https://github.com/505kurt/TechWeek-Digest"
   },
   {
     "name": "discordAutoUpdate",
-    "description": "A simple auto-updater for Discord on Linux!",
+    "description": "Atualizador automático simples e eficiente do Discord para sistemas Linux.",
     "created": "Abr 2025",
     "link": "https://github.com/505kurt/discordAutoUpdate"
   }

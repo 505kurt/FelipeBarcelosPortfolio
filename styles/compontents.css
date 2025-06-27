@@ -158,10 +158,6 @@
 }
 
 /*projects*/
-.projects-title {
-  display: none;
-}
-
 .projects-body {
   display: flex;
   flex-direction: column;
@@ -269,6 +265,19 @@
 
 .link-item:hover img {
   cursor: none;
+}
+
+/*others*/
+.section-title {
+  display: none;
+}
+
+hr {
+  display: none;
+}
+
+.footer-info {
+  display: none;
 }
 
 /*animations*/
