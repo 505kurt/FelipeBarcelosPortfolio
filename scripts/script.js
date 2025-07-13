@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     activatePage('index-body');
   }
+
+  loadProjects();
 });
 
 
