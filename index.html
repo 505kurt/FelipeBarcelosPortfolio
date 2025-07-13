@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="pt-br">
+    <head>
+        <link rel="stylesheet" href="styles/style.css">
+        <script src="scripts/script.js" defer></script>
+        <link rel="icon" href="images/icon.png">
+        <title>Felipe Barcelos | Portfolio</title>
+    </head>
+    <body>
+        <div id="splash-text">
+            <span class="splash-name">Felipe Barcelos</span>
+            <img src="images/splash-logo.png"></img>
+            <span>Portfolio</span>
+        </div>
+        <main id="main">
+            <div class="menu">
+                <div class="menu-title">
+                    <span class="title-name">Felipe Barcelos</span>
+                    <span class="subtitle">Desenvolvedor<br>Full Stack</span>
+                </div>
+                <div class="menu-options">
+                    <div class="active-page">
+                        <img class="active-icon" src="images/circle.png">
+                        <a class="active-option" id="index-button" onclick="activatePage('index-body')">Início</a>
+                    </div>
+                    <div class="inactive-page">
+                        <img class="goto-icon" src="images/arrow.png">
+                        <a class="inactive-options" id="projects-button" onclick="activatePage('projects-body'); loadProjects()">Projetos</a>
+                    </div>
+                    <div class="inactive-page">
+                        <img class="goto-icon" src="images/arrow.png">
+                        <a class="inactive-options" id="contact-button" onclick="activatePage('contact-body')">Contato</a>
+                    </div>
+                    <div class="inactive-page">
+                        <img class="goto-icon" src="images/arrow.png">
+                        <a class="inactive-options" id="links-button" onclick="activatePage('links-body')">Links</a>
+                    </div>
+                </div>
+            </div>
+            <div class="index-body">
+                <div class="typing-text">Seja Bem-Vindo :)</div>
+                <p>Sou um desenvolvedor Full Stack, natural de Campo Grande, Mato Grosso do Sul, Brasil.</p>
+                <p>Atualmente curso Bacharelado em Engenharia de Software na Universidade Federal de Mato Grosso do Sul (UFMS).</p>
+                <p>Tenho interesse em oportunidades de estágio e projetos freelance na área de desenvolvimento.</p>
+                <p>Acredito que código é uma forma de arte — e que toda arte, além de bela, deve ser funcional.</p>
+            </div>
+            <div class="section-title">Meus Projetos</div>
+            <div class="projects-body">
+            </div>
+            <div class="section-title">Contato e Informações</div>
+            <div class="contact-body">
+                <a class="contact-links" href="mailto:felipebma2110@gmail.com" target="_blank">Fale Comigo &nearrow;</a>
+                <a class="contact-links" href="docs/CV.pdf" target="_blank">Currículo &nearrow;</a>
+            </div>
+            <div class="section-title">Redes Sociais</div>
+            <div class="links-body">
+                <div id="item1" class="link-item" data-right="#item2" data-down="#item3"><a href="https://github.com/505kurt" target="_blank"><img src="images/github.png"></a></div>
+                <div id="item2" class="link-item" data-left="#item1" data-down="#item4"><a href="https://www.linkedin.com/in/felipebarcelosdev/" target="_blank"><img src="images/linkedin.png"></a></div>
+                <div id="item3" class="link-item" data-right="#item4" data-up="#item1"><a href="https://x.com/505kurt_" target="_blank"><img src="images/twitter.png"></a></div>
+                <div id="item4" class="link-item" data-left="#item3" data-up="#item2"><a href="https://www.instagram.com/505kurt/" target="_blank"><img src="images/instagram.png"></a></div>
+            </div>
+        </main>
+        <footer>
+            <hr>
+            <div class="footer-info">
+                <p>ⓒ</p><p>Felipe Barcelos<p><p>-</p><p>2025</p><p class="legal-text">Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </body>
+</html>
