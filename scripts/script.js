@@ -66,6 +66,11 @@ function loadProjects() {
     .then(projects => {
       container.innerHTML = '';
 
+      const loader = document.createElement('div');
+      loader.className = 'loader';
+
+      container.appendChild(loader);
+
       projects.slice(0, 5).forEach(p => {
         const card = document.createElement('div');
         card.className = 'project-card';
@@ -92,6 +97,8 @@ function loadProjects() {
 
         container.appendChild(card);
       });
+
+      container.removeChild(loader);
     })
     .catch(err => {
       console.error('Erro ao carregar projetos:', err);
