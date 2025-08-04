@@ -393,7 +393,7 @@ hr {
   }
 }
 
-.loader {
+/*.loader {
   height: 45px;
   --c:no-repeat linear-gradient(#00C776 0 0);
   background: 
@@ -401,6 +401,7 @@ hr {
     var(--c) center,
     var(--c) right;
   background-size: 16px 100%;
+  box-shadow: 0 0 10px 5px rgba(0, 199, 118, 0.6);
   animation: 
     l33-1 1.5s infinite,
     l33-2 1.5s infinite;
@@ -412,4 +413,57 @@ hr {
 @keyframes l33-2 {
   0%,40%  {transform: rotate(0) }
   60%,100%{transform: rotate(90deg) }
+}*/
+
+.loader-box {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.loader {
+  width: 8px;
+  height: 40px;
+  border-radius: 4px;
+  display: block;
+  margin: 20px auto;
+  position: relative;
+  background: currentColor;
+  color: #00C776;
+  box-shadow: 0 0 10px 5px rgba(0, 199, 118, 0.6);
+  box-sizing: border-box;
+  animation: animloader 0.3s 0.3s linear infinite alternate;
+}
+
+.loader::after, .loader::before {
+  content: '';
+  width: 8px;
+  height: 40px;
+  border-radius: 4px;
+  background: currentColor;
+  box-shadow: 0 0 10px 5px rgba(0, 199, 118, 0.6);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+  box-sizing: border-box;
+  animation: animloader 0.3s  0.45s  linear infinite alternate;
+}
+.loader::before {
+  left: -20px;
+  animation-delay: 0s;
+}
+
+.loader-text {
+  color: #00C776;
+  opacity: 0.8;
+  font-family: 'Aventa';
+  font-size: large;
+}
+
+@keyframes animloader {
+  0%   { height: 48px} 
+  100% { height: 4px}
 }

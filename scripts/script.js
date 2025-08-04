@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const splash = document.getElementById("splash-text");
   const mainContent = document.getElementById("main");
+  const footer = document.getElementById("footer-info");
   const typing = document.querySelector(".typing-text");
 
   const navigationType = performance.getEntriesByType("navigation")[0]?.type;
@@ -32,12 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     showAllSections();
   } else {
     activatePage('index-body');
+    loadProjects();
   }
-
-  loadProjects();
 });
-
-
 
 function disableNavigation() {
 
@@ -57,6 +55,21 @@ function showAllSections() {
 
 function loadProjects() {
   const container = document.querySelector('.projects-body');
+  container.innerHTML = '';
+
+  const loader = document.createElement('div');
+  loader.className = 'loader';
+
+  const loaderText = document.createElement('span');
+  loaderText.textContent = 'Carregando';
+  loaderText.className = 'loader-text';
+
+  const loaderBox = document.createElement('div');
+  loaderBox.className = 'loader-box';
+  loaderBox.appendChild(loader);
+  loaderBox.appendChild(loaderText);
+
+  container.appendChild(loaderBox);
 
   fetch('https://felipebarcelosportfolio.onrender.com/fetch_projects')
     .then(response => {
@@ -64,12 +77,6 @@ function loadProjects() {
       return response.json();
     })
     .then(projects => {
-      container.innerHTML = '';
-
-      const loader = document.createElement('div');
-      loader.className = 'loader';
-
-      container.appendChild(loader);
 
       projects.slice(0, 5).forEach(p => {
         const card = document.createElement('div');
@@ -98,7 +105,7 @@ function loadProjects() {
         container.appendChild(card);
       });
 
-      container.removeChild(loader);
+      container.removeChild(loaderBox);
     })
     .catch(err => {
       console.error('Erro ao carregar projetos:', err);
