@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const splash = document.getElementById("splash-text");
   const mainContent = document.getElementById("main");
-  const footer = document.getElementById("footer-info");
   const typing = document.querySelector(".typing-text");
 
   const navigationType = performance.getEntriesByType("navigation")[0]?.type;
@@ -77,6 +76,7 @@ function loadProjects() {
       return response.json();
     })
     .then(projects => {
+      container.innerHTML = '';
 
       projects.slice(0, 5).forEach(p => {
         const card = document.createElement('div');
@@ -104,8 +104,6 @@ function loadProjects() {
 
         container.appendChild(card);
       });
-
-      container.removeChild(loaderBox);
     })
     .catch(err => {
       console.error('Erro ao carregar projetos:', err);
