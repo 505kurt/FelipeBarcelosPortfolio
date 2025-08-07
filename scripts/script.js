@@ -70,7 +70,7 @@ function loadProjects() {
 
   container.appendChild(loaderBox);
 
-  fetch('https://felipebarcelosportfolio.onrender.com/fetch_projects')
+  fetch('https://api.github.com/users/505kurt/repos')
     .then(response => {
       if (!response.ok) throw new Error('Erro ao carregar projects.json');
       return response.json();
@@ -78,19 +78,47 @@ function loadProjects() {
     .then(projects => {
       container.innerHTML = '';
 
-      projects.slice(0, 5).forEach(p => {
+      const exclude = ["505kurt", "FelipeBarcelosPortfolio"];
+      const select = [];
+
+      let index = 0;
+      while (select.length < 5 && index < projects.length) {
+        const p = projects[index];
+        if (!exclude.includes(p.name)) {
+          select.push(p);
+        }
+        index++;
+      }
+
+      while (select.length < 5 && index < projects.length) {
+        const p = projects[index];
+        if (!exclude.includes(p.name) && !select.some(s => s.name === p.name)) {
+          select.push(p);
+        }
+        index++;
+      }
+
+      select.slice(0, 5).forEach(p => {
         const card = document.createElement('div');
         card.className = 'project-card';
 
         const title = document.createElement('a');
         title.className = 'project-title';
         title.textContent = p.name;
-        title.setAttribute("href", p.link);
+        title.setAttribute("href", p.html_url);
         title.setAttribute("target", "_blank");
+
+        const rawDate = p.updated_at;
+        let formattedDate = new Date(rawDate);
+        formattedDate = formattedDate.toLocaleDateString("pt-BR", {
+          month: "short",
+          year: "numeric",
+        }).replace(" de ", " ").replace(".", "");
+        formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 
         const info = document.createElement('span');
         info.className = 'project-info';
-        info.textContent = `${p.created} > Dev`;
+        info.textContent = `${formattedDate} > Dev`;
 
         const desc = document.createElement('a');
         desc.className = 'project-text';
