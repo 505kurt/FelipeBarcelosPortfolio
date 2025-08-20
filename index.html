@@ -1,71 +1,82 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
-<html lang="pt-br">
+<html>
     <head>
+        <meta charset="utf-8">
         <link rel="stylesheet" href="styles/style.css">
+        <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
         <script src="scripts/script.js" defer></script>
-        <link rel="icon" href="images/icon.png">
         <title>Felipe Barcelos | Portfolio</title>
+        <link rel="icon" href="assets/images/icon.png">
     </head>
     <body>
-        <div id="splash-text">
-            <span class="splash-name">Felipe Barcelos</span>
-            <img src="images/splash-logo.png"></img>
-            <span>Portfolio</span>
-        </div>
-        <main id="main">
-            <div class="menu">
-                <div class="menu-title">
-                    <span class="title-name">Felipe Barcelos</span>
-                    <span class="subtitle">Desenvolvedor<br>Full Stack</span>
+        <main>
+            <nav class="vertical-menu">
+                <ul>
+                    <li><a class="menu-item" href="#about"><div id="about-icon" class="menu-icon"></div>Sobre</a></li>
+                    <li><a class="menu-item" href="#projects"><div id="projects-icon" class="menu-icon"></div>Projetos</a></li>
+                    <li><a class="menu-item" href="#contact"><div id="contact-icon" class="menu-icon"></div>Contato</a></li>
+                    <li><a class="menu-item" href="#links"><div id="links-icon" class="menu-icon"></div>Links</a></li>
+                </ul>
+            </nav>
+            <p class="title"><span class="title-name">Felipe Barcelos</span><br>Desenvolvedor<br>FullStack</p>
+            <section id="about" data-aos="fade-up">
+                <div class="terminal-box">
+                    <p class="terminal-icon">$:</p>
+                    <div class="terminal-text">Seja Bem-Vindo :)</div>
                 </div>
-                <div class="menu-options">
-                    <div class="active-page">
-                        <img class="active-icon" src="images/circle.png">
-                        <a class="active-option" id="index-button" onclick="activatePage('index-body')">Início</a>
-                    </div>
-                    <div class="inactive-page">
-                        <img class="goto-icon" src="images/arrow.png">
-                        <a class="inactive-options" id="projects-button" onclick="activatePage('projects-body'); loadProjects()">Projetos</a>
-                    </div>
-                    <div class="inactive-page">
-                        <img class="goto-icon" src="images/arrow.png">
-                        <a class="inactive-options" id="contact-button" onclick="activatePage('contact-body')">Contato</a>
-                    </div>
-                    <div class="inactive-page">
-                        <img class="goto-icon" src="images/arrow.png">
-                        <a class="inactive-options" id="links-button" onclick="activatePage('links-body')">Links</a>
-                    </div>
+                <p class="text-about">Sou um desenvolvedor Full Stack, natural de Campo Grande, Mato Grosso do Sul, Brasil.</p>
+                <p class="text-about">Atualmente curso Bacharelado em Engenharia de Software na Universidade Federal de Mato Grosso do Sul (UFMS).</p>
+                <p class="text-about">Tenho interesse em oportunidades de estágio e projetos freelance na área de desenvolvimento.</p>
+                <p class="text-about">Acredito que código é uma forma de arte — e que toda arte, além de bela, deve ser funcional.</p>
+                <a class="cv-button" href="assets/documents/CV.pdf" target="_blank"><img class="download-icon" src="assets/images/download.png">Ver Currículo</a>
+            </section>
+            <section id="projects" data-aos="fade-up">
+                <img class="projects-icon" src="assets/images/lab.png">
+                <div class="projects-grid"></div>
+            </section>
+            <section id="contact" data-aos="fade-up">
+                <div class="contact-header">
+                    <img class="contact-icon" src="assets/images/contact.png">
+                    <p class="contact-title">Fale Comigo</p>
                 </div>
-            </div>
-            <div class="index-body">
-                <div class="typing-text">Seja Bem-Vindo :)</div>
-                <p>Sou um desenvolvedor Full Stack, natural de Campo Grande, Mato Grosso do Sul, Brasil.</p>
-                <p>Atualmente curso Bacharelado em Engenharia de Software na Universidade Federal de Mato Grosso do Sul (UFMS).</p>
-                <p>Tenho interesse em oportunidades de estágio e projetos freelance na área de desenvolvimento.</p>
-                <p>Acredito que código é uma forma de arte — e que toda arte, além de bela, deve ser funcional.</p>
-            </div>
-            <div class="section-title">Meus Projetos</div>
-            <div class="projects-body">
-            </div>
-            <div class="section-title">Contato e Informações</div>
-            <div class="contact-body">
-                <a class="contact-links" href="mailto:felipebma2110@gmail.com" target="_blank">Fale Comigo &nearrow;</a>
-                <a class="contact-links" href="docs/CV.pdf" target="_blank">Currículo &nearrow;</a>
-            </div>
-            <div class="section-title">Redes Sociais</div>
-            <div class="links-body">
-                <div id="item1" class="link-item" data-right="#item2" data-down="#item3"><a href="https://github.com/505kurt" target="_blank"><img src="images/github.png"></a></div>
-                <div id="item2" class="link-item" data-left="#item1" data-down="#item4"><a href="https://www.linkedin.com/in/felipebarcelosdev/" target="_blank"><img src="images/linkedin.png"></a></div>
-                <div id="item3" class="link-item" data-right="#item4" data-up="#item1"><a href="https://x.com/505kurt_" target="_blank"><img src="images/twitter.png"></a></div>
-                <div id="item4" class="link-item" data-left="#item3" data-up="#item2"><a href="https://www.instagram.com/505kurt/" target="_blank"><img src="images/instagram.png"></a></div>
-            </div>
+                <div class="contact-container">
+                    <a class="contact-button" href="mailto:felipebma2110@gmail.com" target="_blank">
+                        <img class="contact-icon" src="assets/images/e-mail.png">
+                        <div class="contact-text">
+                            <p class="contact-type">E-mail</p>
+                            <p class="contact-info">felipebma2110@gmail.com</p>
+                        </div>
+                    </a>
+                    <a class="contact-button" href="https://wa.me/+5567982120357" target="_blank">
+                        <img class="contact-icon" src="assets/images/whatsapp.png">
+                        <div class="contact-text">
+                            <p class="contact-type">WhatsApp</p>
+                            <p class="contact-info">+55 (67) 98212-0357</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section id="links" data-aos="fade-up">
+                <img class="links-icon" src="assets/images/link.png">
+                <div class="links-grid">
+                    <a class="link-button" href="https://github.com/505kurt"><img class="link-img" src="assets/images/github.png" data-aos="fade-right"></a>
+                    <a class="link-button" href="https://www.linkedin.com/in/felipebarcelosdev/"><img class="link-img" src="assets/images/linkedin.png" data-aos="fade-left"></a>
+                    <a class="link-button" href="https://x.com/505kurt_"><img class="link-img" src="assets/images/twitter.png" data-aos="fade-right"></a>
+                    <a class="link-button" href="https://www.instagram.com/505kurt/"><img class="link-img" src="assets/images/instagram.png" data-aos="fade-left"></a>
+                </div>
+            </section>
         </main>
         <footer>
             <hr>
-            <div class="footer-info">
-                <p>ⓒ</p><p>Felipe Barcelos<p><p>-</p><p>2025</p><p class="legal-text">Todos os direitos reservados.</p>
-            </div>
+            <p>2025 - Felipe Barcelos</p>
         </footer>
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                duration: 1000,
+                easing: 'ease',
+                once: false,
+            });
+        </script>
     </body>
 </html>

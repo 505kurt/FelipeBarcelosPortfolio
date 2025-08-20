@@ -1,74 +1,14 @@
+const sections = document.querySelectorAll("section");
+const icons = document.querySelectorAll(".menu-icon");
+
 document.addEventListener("DOMContentLoaded", () => {
-  const splash = document.getElementById("splash-text");
-  const mainContent = document.getElementById("main");
-  const typing = document.querySelector(".typing-text");
-
-  const navigationType = performance.getEntriesByType("navigation")[0]?.type;
-  const isReload = navigationType === "reload";
-  const isInitialLoad = !sessionStorage.getItem("visited");
-
-  mainContent.classList.add("hidden-content");
-
-  if (isReload || isInitialLoad) {
-    sessionStorage.setItem("visited", "true");
-
-    splash.addEventListener("animationend", () => {
-      splash.classList.add("hidden");
-      typing.classList.add("visited");
-      mainContent.classList.remove("hidden-content");
-    }, { once: true });
-
-  } else {
-    splash.classList.add("hidden");
-    typing.classList.add("visited");
-    mainContent.classList.remove("hidden-content");
-  }
-
-  const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-
-  if (isPortrait) {
-    loadProjects();
-    disableNavigation();
-    showAllSections();
-  } else {
-    activatePage('index-body');
-    loadProjects();
-  }
+  loadProjects();
+  setSectionIcon();
 });
 
-function disableNavigation() {
-
-  document.querySelectorAll('.menu-options').forEach(link => {
-    link.onclick = null;
-    link.style.display = 'none';
-    link.style.pointerEvents = 'none';
-    link.style.opacity = '0.5';
-    link.style.cursor = 'default';
-  });
-}
-
-function showAllSections() {
-  document.querySelectorAll('.index-body, .projects-body, .contact-body, .links-body')
-    .forEach(section => section.style.display = 'flex');
-}
-
 function loadProjects() {
-  const container = document.querySelector('.projects-body');
+  const container = document.querySelector('.projects-grid');
   container.innerHTML = '';
-
-  const loader = document.createElement('div');
-  loader.className = 'loader';
-
-  const loaderText = document.createElement('span');
-  loaderText.textContent = 'Carregando';
-  loaderText.className = 'loader-text';
-
-  const loaderBox = document.createElement('div');
-  loaderBox.className = 'loader-box';
-  loaderBox.appendChild(loader);
-  loaderBox.appendChild(loaderText);
-
-  container.appendChild(loaderBox);
 
   fetch('https://api.github.com/users/505kurt/repos')
     .then(response => {
@@ -98,15 +38,15 @@ function loadProjects() {
         index++;
       }
 
-      select.slice(0, 5).forEach(p => {
-        const card = document.createElement('div');
+      select.slice(0, 6).forEach((p, index) => {
+        const card = document.createElement('a');
         card.className = 'project-card';
+        card.setAttribute("href", p.html_url);
+        card.setAttribute("target", "_blank");
 
-        const title = document.createElement('a');
+        const title = document.createElement('span');
         title.className = 'project-title';
         title.textContent = p.name;
-        title.setAttribute("href", p.html_url);
-        title.setAttribute("target", "_blank");
 
         const rawDate = p.updated_at;
         let formattedDate = new Date(rawDate);
@@ -130,6 +70,12 @@ function loadProjects() {
         card.appendChild(document.createElement('br'));
         card.appendChild(desc);
 
+        if (index % 2 == 0) {
+            card.setAttribute("data-aos", "fade-right");
+        } else {
+            card.setAttribute("data-aos", "fade-left");
+        }
+
         container.appendChild(card);
       });
     })
@@ -138,62 +84,52 @@ function loadProjects() {
     });
 }
 
-function deactivateActive() {
-  document.querySelectorAll('.active-option').forEach(el => {
-    el.classList.remove('active-option');
-    el.classList.add('inactive-options');
-  });
+window.addEventListener("scroll", () => {
+    setSectionIcon();
+});
 
-  document.querySelectorAll('.active-icon').forEach(img => {
-    img.classList.remove('active-icon');
-    img.classList.add('goto-icon');
-    img.src = 'images/arrow.png';
-  });
+function setSectionIcon() {
+    let currentSectionId = "";
 
-  document.querySelectorAll('.active-page').forEach(div => {
-    div.classList.remove('active-page');
-    div.classList.add('inactive-page');
-  });
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const sectionHeight = section.offsetHeight;
 
-  document.querySelectorAll('.index-body, .projects-body, .contact-body, .links-body').forEach(section => {
-    section.style.display = 'none';
-  });
-}
+        if (sectionTop <= window.innerHeight / 2 && sectionTop + sectionHeight > window.innerHeight / 2) {
+            currentSectionId = section.id;
+        }
+    });
 
-function activatePage(newClass) {
-  if (window.matchMedia("(orientation: portrait)").matches) return; // bloqueia se vertical
+    if (currentSectionId == "about") {
+        icons.forEach(i => {
+            i.classList.remove("active");
+        });
+        const activeIcon = document.getElementById("about-icon")
+        activeIcon.classList.add("active");
+    } else if (currentSectionId == "projects") {
+        icons.forEach(i => {
+            i.classList.remove("active");
+        });
+        const activeIcon = document.getElementById("projects-icon")
+        activeIcon.classList.add("active");
+    } else if (currentSectionId == "contact") {
+        icons.forEach(i => {
+            i.classList.remove("active");
+        });
+        const activeIcon = document.getElementById("contact-icon")
+        activeIcon.classList.add("active");
+    } else if (currentSectionId == "links") {
+        icons.forEach(i => {
+            i.classList.remove("active");
+        });
+        const activeIcon = document.getElementById("links-icon")
+        activeIcon.classList.add("active");
+    } else {
+        const anyActive = Array.from(icons).some(i => i.classList.contains("active"));
 
-  deactivateActive();
-
-  const page = document.querySelector('.' + newClass);
-  if (!page) return;
-
-  page.style.display = 'flex';
-
-  let buttonId = '';
-
-  switch(newClass) {
-    case 'index-body': buttonId = 'index-button'; break;
-    case 'projects-body': buttonId = 'projects-button'; break;
-    case 'contact-body': buttonId = 'contact-button'; break;
-    case 'links-body': buttonId = 'links-button'; break;
-    default: return;
-  }
-
-  const menuButton = document.getElementById(buttonId);
-  if (!menuButton) return;
-
-  menuButton.classList.remove('inactive-options');
-  menuButton.classList.add('active-option');
-
-  const container = menuButton.parentElement;
-  container.classList.remove('inactive-page');
-  container.classList.add('active-page');
-
-  const icon = container.querySelector('img');
-  if (icon) {
-    icon.classList.remove('goto-icon');
-    icon.classList.add('active-icon');
-    icon.src = 'images/circle.png';
-  }
+        if (!anyActive) {
+            const activeIcon = document.getElementById("about-icon");
+            activeIcon.classList.add("active");
+        }
+    }
 }
