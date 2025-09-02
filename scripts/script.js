@@ -10,7 +10,7 @@ function loadProjects() {
   const container = document.querySelector('.projects-grid');
   container.innerHTML = '';
 
-  fetch('https://api.github.com/users/505kurt/repos')
+  fetch('https://api.github.com/users/505kurt/repos?sort=updated&direction=desc')
     .then(response => {
       if (!response.ok) throw new Error('Erro ao carregar projects.json');
       return response.json();
