@@ -22,7 +22,7 @@ function loadProjects() {
       const select = [];
 
       let index = 0;
-      while (select.length < 5 && index < projects.length) {
+      while (select.length < 6 && index < projects.length) {
         const p = projects[index];
         if (!exclude.includes(p.name)) {
           select.push(p);
@@ -30,7 +30,7 @@ function loadProjects() {
         index++;
       }
 
-      while (select.length < 5 && index < projects.length) {
+      while (select.length < 6 && index < projects.length) {
         const p = projects[index];
         if (!exclude.includes(p.name) && !select.some(s => s.name === p.name)) {
           select.push(p);
